@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<title>Social Science - Class 7 | Power to the People</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+*{box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:#eff6ff;color:#0f172a;overflow-x:hidden;word-wrap:break-word}
+.app-container{max-width:800px;margin:0 auto;min-height:100vh;background:#fff;box-shadow:0 4px 6px -1px rgba(0,0,0,.1);overflow-x:hidden}
+.screen{display:none;padding:16px;animation:fadeIn .3s;overflow-x:hidden;word-break:break-word}
+.screen.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.btn-main{padding:14px 16px;border-radius:12px;font-weight:700;display:flex;align-items:center;gap:12px;width:100%;color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.2);text-align:left;font-size:0.95rem;line-height:1.35}
+.btn-main:active{transform:translateY(4px);box-shadow:none}
+.btn-action{background:#2563eb;color:#fff;padding:10px 20px;border-radius:8px;font-weight:700;box-shadow:0 4px 0 #1d4ed8;cursor:pointer;border:none}
+.header{background:#1d4ed8;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;border-radius:14px;margin-bottom:16px;gap:8px}
+.header h1{font-size:1.05rem;font-weight:700;margin:0;flex:1;overflow:hidden;text-overflow:ellipsis}
+.back-btn{background:rgba(255,255,255,.25);border:none;color:#fff;font-size:1.15rem;padding:4px 12px;border-radius:8px;cursor:pointer;flex-shrink:0}
+.category-card{background:#eff6ff;border:2px solid #bfdbfe;border-radius:16px;padding:14px;margin-bottom:16px}
+.category-title{font-size:1.1rem;font-weight:700;margin-bottom:12px;border-bottom:2px dashed #60a5fa;padding-bottom:6px}
+.content-card{background:#fff;border:2px solid #93c5fd;border-radius:12px;padding:14px;margin-bottom:14px;overflow-x:hidden;word-break:break-word}
+.quiz-opt,.match-item{padding:12px;background:#eff6ff;border:2px solid #93c5fd;border-radius:8px;cursor:pointer;text-align:center;font-weight:700;font-size:0.92rem}
+.match-item.selected{background:#bfdbfe;border-color:#2563eb}
+.match-item.matched{background:#bbf7d0;border-color:#16a34a;color:#16a34a}
+.memory-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.memory-card{aspect-ratio:1;background:#3b82f6;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:transparent;cursor:pointer;box-shadow:0 4px 0 #1d4ed8;padding:4px;text-align:center;overflow:hidden}
+.memory-card.revealed,.memory-card.matched{background:#fff;color:#1f2937;border:2px solid #3b82f6;box-shadow:none}
+.memory-card.matched{background:#d1fae5;border-color:#059669}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1e293b;color:#fff;padding:12px 24px;border-radius:8px;z-index:1000;display:none;opacity:0;font-weight:700;max-width:90%;text-align:center}
+.toast.show{display:block;opacity:1}
+.race-track{height:40px;background:#dbeafe;border-radius:20px;position:relative;margin:16px 0;border:2px solid #93c5fd}
+.car{font-size:1.8rem;position:absolute;top:-4px;left:0;transition:left .3s}
+.formula{background:#eff6ff;border-left:4px solid #2563eb;padding:10px 12px;border-radius:8px;margin:8px 0;font-weight:600;font-size:0.95rem}
+@media (max-width:640px){
+  .home-grid{grid-template-columns:1fr !important;gap:10px !important}
+  .btn-main{min-height:56px;font-size:1rem;padding:16px}
+  .screen{padding:12px}
+}
+@media print{.no-print{display:none!important}}
+</style>
+</head>
+<body>
+<div class="app-container">
+<div id="homeScreen" class="screen active">
+  <div class="text-center mb-5 pt-2 px-1">
+    <h1 class="text-2xl sm:text-3xl font-extrabold text-blue-800 mb-1">Social Science — Class 7</h1>
+    <p class="text-blue-700 font-extrabold text-lg">Unit 8: Power to the People</p>
+    <div class="mt-3 mb-1 inline-block bg-blue-100 border-2 border-blue-500 text-blue-900 font-extrabold px-4 py-2 rounded-xl text-sm shadow">
+      ✨ Prepared by : Smart Vidhya
+    </div>
+  </div>
+
+  <div class="category-card">
+    <h3 class="category-title text-blue-800">📖 1. Understand the Lesson</h3>
+    <div class="grid home-grid grid-cols-1 gap-3 mb-3">
+      <button class="btn-main bg-indigo-600" onclick="showScreen('readLessonScreen')"><span class="text-2xl">🔊</span> Read the Lesson</button>
+    </div>
+    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+      <button class="btn-main bg-blue-500" onclick="showScreen('learn1')"><span class="text-2xl">🏘️</span> Pookkottumala Model</button>
+      <button class="btn-main bg-sky-500" onclick="showScreen('learn2')"><span class="text-2xl">🗳️</span> Grama Sabha</button>
+      <button class="btn-main bg-cyan-500" onclick="showScreen('learn3')"><span class="text-2xl">🏛️</span> Local Self-Government</button>
+      <button class="btn-main bg-teal-500" onclick="showScreen('learn4')"><span class="text-2xl">🕊️</span> Gandhiji's Grama Swaraj</button>
+      <button class="btn-main bg-emerald-500" onclick="showScreen('learn5')"><span class="text-2xl">⚖️</span> Decentralisation</button>
+      <button class="btn-main bg-green-500" onclick="showScreen('learn6')"><span class="text-2xl">🌱</span> Sustainable Development</button>
+    </div>
+  </div>
+
+  <div class="category-card">
+    <h3 class="category-title text-blue-800">🎯 2. Know the Concepts</h3>
+    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+      <button class="btn-main bg-pink-500" onclick="initTerm();showScreen('tmScreen')"><span class="text-2xl">📚</span> Key Terms</button>
+      <button class="btn-main bg-rose-500" onclick="initWho();showScreen('whScreen')"><span class="text-2xl">👤</span> Who / What</button>
+      <button class="btn-main bg-red-500" onclick="initTrue();showScreen('trueScreen')"><span class="text-2xl">✅</span> True or False</button>
+      <button class="btn-main bg-orange-500" onclick="initLevel();showScreen('lvScreen')"><span class="text-2xl">🏛️</span> Levels of Govt</button>
+      <button class="btn-main bg-amber-600" onclick="initAct();showScreen('acScreen')"><span class="text-2xl">🛠️</span> Activities</button>
+      <button class="btn-main bg-yellow-600 text-white" onclick="initQuote();showScreen('qtScreen')"><span class="text-2xl">💬</span> Gandhi Quote</button>
+      <button class="btn-main bg-lime-600" onclick="initBody();showScreen('bdScreen')"><span class="text-2xl">📋</span> Institutions</button>
+      <button class="btn-main bg-green-600" onclick="initGoal();showScreen('glScreen')"><span class="text-2xl">🎯</span> Goals</button>
+    </div>
+  </div>
+
+  <div class="category-card">
+    <h3 class="category-title text-blue-800">🧩 3. Explore & Reflect</h3>
+    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+      <button class="btn-main bg-blue-600" onclick="initFactor();showScreen('fcScreen')"><span class="text-2xl">🔑</span> Driving Factors</button>
+      <button class="btn-main bg-sky-600" onclick="initSabha();showScreen('sbScreen')"><span class="text-2xl">🗳️</span> Grama Sabha Role</button>
+      <button class="btn-main bg-cyan-600" onclick="initProject();showScreen('pjScreen')"><span class="text-2xl">🏗️</span> Projects</button>
+      <button class="btn-main bg-teal-600" onclick="initGandhi();showScreen('gdScreen')"><span class="text-2xl">🕊️</span> Village Swaraj</button>
+      <button class="btn-main bg-emerald-600" onclick="initPower();showScreen('pwScreen')"><span class="text-2xl">⚡</span> Power Decentralised</button>
+      <button class="btn-main bg-green-600" onclick="initClass();showScreen('clScreen')"><span class="text-2xl">📢</span> Class Sabha</button>
+      <button class="btn-main bg-lime-600" onclick="initLink();showScreen('lkScreen')"><span class="text-2xl">🔗</span> Connect Ideas</button>
+      <button class="btn-main bg-yellow-600 text-white" onclick="initChallenge();showScreen('chScreen')"><span class="text-2xl">💪</span> Challenge</button>
+    </div>
+  </div>
+
+  <div class="category-card">
+    <h3 class="category-title text-blue-800">🎮 4. Play & Learn</h3>
+    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+      <button class="btn-main bg-cyan-500" onclick="initMem();showScreen('memScreen')"><span class="text-2xl">🃏</span> Memory Match</button>
+      <button class="btn-main bg-sky-600" onclick="initRace();showScreen('raceScreen')"><span class="text-2xl">🏎️</span> Power Race</button>
+      <button class="btn-main bg-blue-600" onclick="initQuick();showScreen('quickScreen')"><span class="text-2xl">⚡</span> Speed Quiz</button>
+      <button class="btn-main bg-indigo-600" onclick="initLadder();showScreen('ladderScreen')"><span class="text-2xl">📶</span> Ladder</button>
+      <button class="btn-main bg-violet-600" onclick="initTarget();showScreen('targetScreen')"><span class="text-2xl">🎯</span> Target</button>
+      <button class="btn-main bg-purple-600" onclick="initOrder();showScreen('orderScreen')"><span class="text-2xl">📊</span> Order</button>
+      <button class="btn-main bg-fuchsia-600" onclick="initMix();showScreen('mixScreen')"><span class="text-2xl">🎲</span> Mix & Match</button>
+      <button class="btn-main bg-pink-600" onclick="initBuild();showScreen('buildScreen')"><span class="text-2xl">🏗️</span> Build Idea</button>
+    </div>
+  </div>
+
+  <div class="category-card">
+    
+  <div class="category-card">
+    <h3 class="category-title text-blue-800">🌟 5. Do & Apply</h3>
+    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+      <button class="btn-main bg-indigo-500" onclick="showScreen('vocabScreen')"><span class="text-2xl">📇</span> Word Cards</button>
+      <button class="btn-main bg-violet-500" onclick="showScreen('noticeScreen')"><span class="text-2xl">📢</span> Write a Notice</button>
+      <button class="btn-main bg-purple-500" onclick="showScreen('sabhaPlanScreen')"><span class="text-2xl">🗳️</span> Class Sabha Planner</button>
+      <button class="btn-main bg-fuchsia-500" onclick="initPairGame();showScreen('pairScreen')"><span class="text-2xl">🔗</span> Project Pair Game</button>
+      <button class="btn-main bg-pink-500" onclick="initClue();showScreen('clueScreen')"><span class="text-2xl">🕵️</span> Clue Detective</button>
+      
+      <button class="btn-main bg-amber-600" onclick="showScreen('shortAnsScreen')"><span class="text-2xl">✏️</span> Short Answers</button>
+      <button class="btn-main bg-orange-600" onclick="showScreen('writeAnsScreen')"><span class="text-2xl">📝</span> Write Answers</button>
+      <button class="btn-main bg-rose-500" onclick="showScreen('followScreen')"><span class="text-2xl">📌</span> Follow-up Tasks</button>
+      <button class="btn-main bg-orange-500" onclick="initSort();showScreen('sortScreen')"><span class="text-2xl">📦</span> Sort Activities</button>
+      <button class="btn-main bg-amber-500" onclick="initFill();showScreen('fillScreen')"><span class="text-2xl">✍️</span> Fill the Blanks</button>
+    </div>
+  </div>
+
+  <h3 class="category-title text-blue-800">📝 6. Exam Corner</h3>
+    <div class="grid home-grid grid-cols-1 md:grid-cols-2 gap-3">
+      <button class="btn-main bg-teal-600" onclick="initQuiz();showScreen('quizScreen')"><span class="text-2xl">❓</span> Mega Quiz</button>
+      <button class="btn-main bg-emerald-600" onclick="showScreen('matchScreen')"><span class="text-2xl">🔗</span> Cross Match</button>
+      <button class="btn-main bg-green-600" onclick="showScreen('modelQPScreen')"><span class="text-2xl">📋</span> Model Question Paper</button>
+      <button class="btn-main bg-lime-600" onclick="showScreen('unitTestScreen')"><span class="text-2xl">📄</span> Unit Test</button>
+    </div>
+  </div>
+</div>
+
+<!-- LEARN -->
+<div id="learn1" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Pookkottumala Model</h1></div>
+  <div class="content-card text-sm space-y-3">
+    <p>Pookkottumala achieved <b>sustainable development</b> with people participation.</p>
+    <div class="formula">Activities: food self-sufficiency · watersheds · greenery · arid-free · Jalasamridhi · filament-free village</div>
+    <p>Supported by local self-government institutions and active grama sabhas.</p>
+  </div>
+</div>
+<div id="learn2" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Grama Sabha</h1></div>
+  <div class="content-card text-sm space-y-3">
+    <p>Meeting of all adult voters of a ward/village. Plans development, identifies beneficiaries, monitors works.</p>
+    <div class="formula">People participation + planning + officers' support = progress</div>
+  </div>
+</div>
+<div id="learn3" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Local Self-Government</h1></div>
+  <div class="content-card text-sm space-y-3">
+    <p>Grama panchayat, block panchayat, district panchayat (rural); municipality / corporation (urban).</p>
+    <p>They plan and implement local development with people involvement.</p>
+  </div>
+</div>
+<div id="learn4" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Gandhiji's Grama Swaraj</h1></div>
+  <div class="content-card text-sm space-y-3">
+    <p>Village as a complete republic — self-sufficient in food and cloth, yet interdependent where needed.</p>
+    <div class="formula">Soul of India lies in the villages · Progress through village development</div>
+  </div>
+</div>
+<div id="learn5" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Decentralisation</h1></div>
+  <div class="content-card text-sm space-y-3">
+    <p>Transfer of power from higher levels to local bodies and people.</p>
+    <p>Means to realise <b>grama swaraj</b>. When power reaches the people, welfare increases.</p>
+  </div>
+</div>
+<div id="learn6" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Sustainable Development</h1></div>
+  <div class="content-card text-sm space-y-3">
+    <p>Meeting present needs without harming future generations.</p>
+    <p>Examples in Pookkottumala: greenery, watershed, food self-sufficiency, waste-free (garbage-free) wards.</p>
+  </div>
+</div>
+
+<!-- IDENTIFY -->
+<div id="tmScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Key Terms</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="tmQ"></p><div class="grid grid-cols-2 gap-3" id="tmOpts"></div></div></div>
+<div id="whScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Who / What</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="whQ"></p><div class="grid grid-cols-2 gap-3" id="whOpts"></div></div></div>
+<div id="trueScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>True or False</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="tfQ"></p><div class="grid grid-cols-2 gap-3"><button class="quiz-opt py-4" onclick="checkTF(true)">True</button><button class="quiz-opt py-4" onclick="checkTF(false)">False</button></div></div></div>
+<div id="lvScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Levels</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="lvQ"></p><div class="grid grid-cols-2 gap-3" id="lvOpts"></div></div></div>
+<div id="acScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Activities</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="acQ"></p><div class="grid grid-cols-2 gap-3" id="acOpts"></div></div></div>
+<div id="qtScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Quote</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="qtQ"></p><div class="grid grid-cols-2 gap-3" id="qtOpts"></div></div></div>
+<div id="bdScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Institutions</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="bdQ"></p><div class="grid grid-cols-2 gap-3" id="bdOpts"></div></div></div>
+<div id="glScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Goals</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="glQ"></p><div class="grid grid-cols-2 gap-3" id="glOpts"></div></div></div>
+
+<!-- THINK -->
+<div id="fcScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Factors</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="fcQ"></p><div class="grid grid-cols-2 gap-3" id="fcOpts"></div></div></div>
+<div id="sbScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Grama Sabha</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="sbQ"></p><div class="grid grid-cols-2 gap-3" id="sbOpts"></div></div></div>
+<div id="pjScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Projects</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="pjQ"></p><div class="grid grid-cols-2 gap-3" id="pjOpts"></div></div></div>
+<div id="gdScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Village Swaraj</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="gdQ"></p><div class="grid grid-cols-2 gap-3" id="gdOpts"></div></div></div>
+<div id="pwScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Decentralisation</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="pwQ"></p><div class="grid grid-cols-2 gap-3" id="pwOpts"></div></div></div>
+<div id="clScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Class Sabha</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="clQ"></p><div class="grid grid-cols-2 gap-3" id="clOpts"></div></div></div>
+<div id="lkScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Connect</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="lkQ"></p><div class="grid grid-cols-2 gap-3" id="lkOpts"></div></div></div>
+<div id="chScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Challenge</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="chQ"></p><div class="grid grid-cols-2 gap-3" id="chOpts"></div></div></div>
+
+<!-- GAMES -->
+<div id="memScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Memory</h1></div><div class="content-card text-center"><p class="font-extrabold mb-3">Term ↔ Meaning</p><div class="memory-grid" id="memoryGrid"></div><div class="flex justify-between mt-4"><p id="memoryMoves" class="font-extrabold text-blue-700">Moves: 0</p><button class="btn-action" onclick="initMem()">Again</button></div></div></div>
+<div id="raceScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Power Race</h1></div><div class="content-card text-center"><div class="font-extrabold text-blue-700">Points: <span id="racePts">0</span>/100</div><div class="race-track"><div class="car" id="raceCar">🏎️</div></div><p class="text-xl font-extrabold my-3" id="raceQ"></p><div class="grid grid-cols-2 gap-3" id="raceOpts"></div></div></div>
+<div id="quickScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Speed Quiz</h1></div><div class="content-card text-center"><p class="text-xl font-extrabold my-4" id="qkQ"></p><div class="grid grid-cols-2 gap-3" id="qkOpts"></div><p class="mt-4 font-extrabold text-blue-700" id="qkScore">Score: 0</p></div></div>
+<div id="ladderScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Ladder</h1></div><div class="content-card text-center"><p class="font-extrabold mb-2">Concepts</p><p class="text-xl font-extrabold my-3" id="ldQ"></p><div class="grid grid-cols-2 gap-3" id="ldOpts"></div><p class="mt-3 font-extrabold" id="ldScore">Level: 1</p></div></div>
+<div id="targetScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Target</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="tgQ"></p><div class="grid grid-cols-2 gap-3" id="tgOpts"></div></div></div>
+<div id="orderScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Order</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="orQ"></p><div class="grid grid-cols-2 gap-3" id="orOpts"></div></div></div>
+<div id="mixScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Mix</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="mxQ"></p><div class="grid grid-cols-1 gap-3" id="mxOpts"></div></div></div>
+<div id="buildScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Build</h1></div><div class="content-card text-center"><p class="font-extrabold mb-4" id="bd2Q"></p><div class="grid grid-cols-1 gap-3" id="bd2Opts"></div></div></div>
+
+<!-- EXAM -->
+<div id="quizScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Mega Quiz</h1><div id="quizProgress" class="font-extrabold bg-white text-blue-800 px-3 py-1 rounded-lg text-sm">1/20</div></div>
+  <div class="content-card min-h-[260px]"><div id="quizQuestionArea"><h3 id="questionText" class="font-extrabold text-lg mb-5"></h3><div id="optionsGrid" class="grid gap-3"></div></div>
+  <div id="quizResultArea" style="display:none" class="text-center py-4"><div class="text-6xl mb-3">🏆</div><h2 class="text-2xl font-extrabold text-blue-700 mb-3">Completed!</h2><p class="text-xl font-extrabold mb-5">Score: <span id="finalScore" class="text-3xl text-blue-600">0</span>/20</p><button class="btn-action w-full py-3" onclick="initQuiz()">Play Again</button></div></div>
+</div>
+<div id="matchScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Cross Match</h1></div>
+  <div class="content-card"><p class="text-center font-extrabold mb-4">Match pairs</p>
+    <div class="grid grid-cols-2 gap-3">
+      <div class="flex flex-col gap-2" id="match-left">
+        <div class="match-item" data-id="a" onclick="selM('left',this)">Grama Sabha</div>
+        <div class="match-item" data-id="b" onclick="selM('left',this)">Grama Swaraj</div>
+        <div class="match-item" data-id="c" onclick="selM('left',this)">Decentralisation</div>
+        <div class="match-item" data-id="d" onclick="selM('left',this)">Pookkottumala</div>
+        <div class="match-item" data-id="e" onclick="selM('left',this)">Janakeeya Samithi</div>
+      </div>
+      <div class="flex flex-col gap-2" id="match-right">
+        <div class="match-item" data-id="c" onclick="selM('right',this)">Power to local level / people</div>
+        <div class="match-item" data-id="a" onclick="selM('right',this)">Meeting of village voters</div>
+        <div class="match-item" data-id="e" onclick="selM('right',this)">People committee</div>
+        <div class="match-item" data-id="b" onclick="selM('right',this)">Gandhi village self-rule</div>
+        <div class="match-item" data-id="d" onclick="selM('right',this)">Model of people development</div>
+      </div>
+    </div>
+    <button class="btn-action w-full mt-5" onclick="resetM()">Reset</button>
+  </div>
+</div>
+<div id="modelQPScreen" class="screen"><div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Model Paper</h1></div>
+  <div class="content-card text-sm">
+    <div class="text-center mb-4 border-b-2 pb-2"><h2 class="text-xl font-extrabold text-blue-800">Model Question Paper</h2><p class="font-extrabold text-gray-500">Class 7 | Social Science | Unit 8: Power to the People</p><p class="text-xs">Prepared by : Smart Vidhya</p></div>
+    <p class="font-extrabold text-blue-700">I. Choose (8×1=8)</p>
+    <p>1. Pookkottumala is known for (a) people participation in development (b) only factories (c) no panchayat</p>
+    <p>2. Grama Sabha is (a) meeting of adult voters (b) only officers (c) only MLAs</p>
+    <p>3. Grama Swaraj was envisioned by (a) Gandhiji (b) only British (c) only kings</p>
+    <p>4. Decentralisation means (a) power to local bodies/people (b) all power at centre only (c) no government</p>
+    <p>5. Jalasamridhi is related to (a) water (b) only roads (c) only electricity</p>
+    <p>6. Filament-free village means (a) no filament bulbs / energy efficient (b) no light (c) no houses</p>
+    <p>7. Soul of India, according to Gandhi (a) villages (b) only cities (c) only factories</p>
+    <p>8. Local self-government helps (a) local development with people (b) only foreign policy (c) only currency</p>
+    <p class="font-extrabold text-blue-700 mt-2">II. True/False (4)</p>
+    <p>9. Grama Sabha plans local development. ( ) 10. Gandhi wanted villages dependent only on cities. ( )</p>
+    <p>11. Decentralisation realises grama swaraj. ( ) 12. Pookkottumala had no people role. ( )</p>
+    <p class="font-extrabold text-blue-700 mt-2">III. Fill in (4)</p>
+    <p>13. Village self-rule is called __ Swaraj. 14. Meeting of ward voters is __ Sabha.</p>
+    <p>15. Power from top to bottom is __. 16. Pookkottumala model shows __ development.</p>
+    <p class="font-extrabold text-blue-700 mt-2">IV. Short (3×2=6)</p>
+    <p>17. List two activities of Pookkottumala model.</p>
+    <p>18. What is grama sabha? One function.</p>
+    <p>19. One idea of Gandhi on village development.</p>
+    <p class="font-extrabold text-blue-700 mt-2">V. Long (2×4=8)</p>
+    <p>20. Explain the Pookkottumala model and factors behind its progress.</p>
+    <p>21. Describe Gandhi's vision of village Swaraj and how decentralisation helps it.</p>
+    <button class="btn-action w-full mt-4" onclick="document.getElementById('modelAnswers').classList.toggle('hidden')">Answers</button>
+    <div id="modelAnswers" class="hidden mt-3 p-3 bg-green-50 rounded-xl border-2 border-green-200 text-sm">I: 1a 2a 3a 4a 5a 6a 7a 8a<br>II: 9T 10F 11T 12F<br>III: 13 Grama 14 Grama 15 Decentralisation 16 sustainable/people</div>
+  </div>
+</div>
+<div id="unitTestScreen" class="screen">
+  <div class="header no-print"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Unit Test</h1></div>
+  <div class="flex gap-3 mb-4 no-print px-2">
+    <button class="flex-1 bg-blue-100 text-blue-700 py-3 rounded-xl font-extrabold border border-blue-300" onclick="window.print()">🖨️ Print</button>
+    <button class="flex-1 bg-red-100 text-red-700 py-3 rounded-xl font-extrabold border border-red-300" onclick="downloadPDF()">⬇️ PDF</button>
+  </div>
+  <div class="content-card text-sm mx-1" id="printableQP" style="padding:20px">
+    <div class="text-center mb-4 border-b-2 border-black pb-2">
+      <h2 class="text-xl font-extrabold">Unit Assessment</h2>
+      <h3 class="font-extrabold">Social Science — Class 7 | Unit 8: Power to the People</h3>
+      <p>60 minutes | 40 marks</p>
+      <p class="text-xs">Prepared by : Smart Vidhya</p>
+    </div>
+    <p class="font-extrabold">Part A (15)</p>
+    <p><b>1.</b> Choose (5×1=5)</p>
+    <p>a) Pookkottumala development was with (i) people participation (ii) only outsiders (iii) no plan</p>
+    <p>b) Grama Sabha is (i) voters' meeting (ii) only court (iii) only police</p>
+    <p>c) Grama Swaraj by (i) Gandhi (ii) only Mughals (iii) only British</p>
+    <p>d) Decentralisation (i) power to local/people (ii) only centre (iii) no power</p>
+    <p>e) Soul of India (Gandhi) (i) villages (ii) only ports (iii) only capitals</p>
+    <p><b>2.</b> True/False (5×1=5)</p>
+    <p>a) Grama Sabha monitors local works. ( ) b) Gandhi wanted only city rule. ( )</p>
+    <p>c) Filament-free is an energy idea. ( ) d) Panchayat is local self-government. ( )</p>
+    <p>e) Sustainable development ignores future. ( )</p>
+    <p><b>3.</b> Fill (5×1=5)</p>
+    <p>a) __ Sabha = village voters' meeting. b) Village self-rule = Grama __.</p>
+    <p>c) Power to lower levels = __. d) Model village in lesson = __.</p>
+    <p>e) Water project name = __.</p>
+    <p class="font-extrabold mt-2">Part B (12)</p>
+    <p><b>4.</b> Any four developmental activities of Pookkottumala. (4)</p>
+    <p><b>5.</b> Role of grama sabha (two points). What is class sabha idea? (4)</p>
+    <p><b>6.</b> Two features of Gandhi village Swaraj. (4)</p>
+    <p class="font-extrabold mt-2">Part C (13)</p>
+    <p><b>7.</b> Explain factors that drove Pookkottumala's progress. (4)</p>
+    <p><b>8.</b> How does decentralisation help realise grama swaraj? (5)</p>
+    <p><b>9.</b> Write a short note on sustainable development with examples from the lesson. (4)</p>
+  </div>
+</div>
+
+<!-- EXTRA ACTIVITIES -->
+<div id="vocabScreen" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Word Cards</h1></div>
+  <div class="content-card text-sm">
+    <p class="text-center font-extrabold mb-3 text-blue-700">Tap a card to flip meaning</p>
+    <div class="grid grid-cols-2 gap-3" id="vocabGrid"></div>
+  </div>
+</div>
+<div id="noticeScreen" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Write a Notice</h1></div>
+  <div class="content-card text-sm space-y-3">
+    <p class="font-extrabold text-blue-700">Prepare a notice to invite members for the Class Sabha.</p>
+    <p>Include: date, time, place, agenda (child-friendly classroom, cleanliness, other developmental activities).</p>
+    <textarea id="noticeText" class="w-full border-2 border-blue-200 rounded-xl p-3 min-h-[140px]" placeholder="Write your notice here..."></textarea>
+    <button class="btn-action w-full" onclick="saveNotice()">Save / Check</button>
+    <p id="noticeFeedback" class="font-extrabold text-center"></p>
+  </div>
+</div>
+<div id="sabhaPlanScreen" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Class Sabha Planner</h1></div>
+  <div class="content-card text-sm space-y-3">
+    <p class="font-extrabold text-blue-700">Tick activities to discuss in Class Sabha:</p>
+    <div class="space-y-2" id="sabhaChecks">
+      <label class="flex gap-2 items-center"><input type="checkbox" class="sabha-item"> Child-friendly classroom changes</label>
+      <label class="flex gap-2 items-center"><input type="checkbox" class="sabha-item"> Cleanliness of school premises</label>
+      <label class="flex gap-2 items-center"><input type="checkbox" class="sabha-item"> Greenery / garden in school</label>
+      <label class="flex gap-2 items-center"><input type="checkbox" class="sabha-item"> Waste management / garbage-free</label>
+      <label class="flex gap-2 items-center"><input type="checkbox" class="sabha-item"> Water / Jalasamridhi ideas</label>
+      <label class="flex gap-2 items-center"><input type="checkbox" class="sabha-item"> Energy saving / filament-free ideas</label>
+      <label class="flex gap-2 items-center"><input type="checkbox" class="sabha-item"> Playground / recreation</label>
+    </div>
+    <button class="btn-action w-full" onclick="checkSabhaPlan()">Confirm Plan</button>
+    <p id="sabhaPlanFb" class="font-extrabold text-center"></p>
+  </div>
+</div>
+<div id="pairScreen" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Project Pair Game</h1></div>
+  <div class="content-card text-center">
+    <p class="font-extrabold mb-3">Match project → meaning</p>
+    <div class="grid grid-cols-2 gap-3" id="pairGrid"></div>
+    <p class="mt-3 font-extrabold text-blue-700" id="pairScore">Matched: 0</p>
+  </div>
+</div>
+<div id="clueScreen" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Clue Detective</h1></div>
+  <div class="content-card text-center">
+    <p class="font-extrabold mb-4 text-lg" id="clueQ"></p>
+    <div class="grid grid-cols-2 gap-3" id="clueOpts"></div>
+  </div>
+</div>
+<div id="followScreen" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Follow-up Tasks</h1></div>
+  <div class="content-card text-sm space-y-4">
+    <div class="p-3 bg-blue-50 rounded-xl border-2 border-blue-200">
+      <h3 class="font-extrabold text-blue-800">1. 🏫 Local Development List</h3>
+      <p>With your teacher, list developmental activities planned through grama sabhas / ward sabhas in your area (roads, water, greenery…).</p>
+    </div>
+    <div class="p-3 bg-green-50 rounded-xl border-2 border-green-200">
+      <h3 class="font-extrabold text-green-800">2. 📢 Class Sabha Notice</h3>
+      <p>Prepare a notice and organise a class sabha on child-friendly classroom and cleanliness.</p>
+    </div>
+    <div class="p-3 bg-amber-50 rounded-xl border-2 border-amber-200">
+      <h3 class="font-extrabold text-amber-800">3. 🕊️ Gandhi Vision Chart</h3>
+      <p>Make a chart of Gandhi&apos;s ideas on village Swaraj (food, cloth, cattle, playground, interdependence).</p>
+    </div>
+    <div class="p-3 bg-purple-50 rounded-xl border-2 border-purple-200">
+      <h3 class="font-extrabold text-purple-800">4. 🌱 Sustainable Ward Plan</h3>
+      <p>Design a simple plan for a garbage-free / greenery / water-saving activity for your ward or school.</p>
+    </div>
+  </div>
+</div>
+<div id="sortScreen" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Sort Activities</h1></div>
+  <div class="content-card text-center">
+    <p class="font-extrabold mb-3">Is this a local self-govt activity?</p>
+    <p class="text-xl font-extrabold my-4" id="sortQ"></p>
+    <div class="grid grid-cols-2 gap-3">
+      <button class="quiz-opt py-4" onclick="checkSort(true)">Yes – Local</button>
+      <button class="quiz-opt py-4" onclick="checkSort(false)">No – Not local</button>
+    </div>
+  </div>
+</div>
+<div id="fillScreen" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Fill the Blanks</h1></div>
+  <div class="content-card text-center">
+    <p class="font-extrabold mb-4" id="fillQ"></p>
+    <div class="grid grid-cols-2 gap-3" id="fillOpts"></div>
+  </div>
+</div>
+
+
+<div id="readLessonScreen" class="screen">
+  <div class="header"><button class="back-btn" onclick="stopReadAll();showScreen('homeScreen')">⬅</button><h1>Read the Lesson</h1></div>
+  <div class="content-card text-sm">
+    <div class="text-center mb-4">
+      <button id="readAllBtn" class="btn-action px-6 py-3" onclick="toggleReadAll()">🔊 Read All</button>
+      <button class="btn-action px-4 py-3 ml-2 bg-gray-500" style="box-shadow:0 4px 0 #374151" onclick="stopReadAll()">⏹ Stop</button>
+    </div>
+    <div class="story-title-wrap text-center mb-3"><span class="inline-block bg-blue-100 text-blue-800 font-extrabold px-4 py-2 rounded-full">Power to the People — Pookkottumala Model</span></div>
+    <div id="lessonParas" class="space-y-3"></div>
+  </div>
+</div>
+
+
+<div id="shortAnsScreen" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Short Answers</h1></div>
+  <div class="content-card text-sm">
+    <p class="text-center font-extrabold text-blue-700 mb-3">Write short answers (2–3 sentences). Then check the hint.</p>
+    <div class="mb-4 p-3 bg-blue-50 rounded-xl border-2 border-blue-200">
+      <p class="font-extrabold text-blue-800 mb-2">1. List any two developmental activities of the Pookkottumala model.</p>
+      <textarea class="w-full border-2 border-blue-200 rounded-lg p-2 min-h-[60px] text-sm" id="sa0" placeholder="Write your short answer here..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('sah0','saFb0')">Show hint</button>
+      <p id="sah0" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Food self-sufficiency, watersheds, greenery, arid-free, Jalasamridhi, filament-free...</p>
+      <p id="saFb0" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-blue-50 rounded-xl border-2 border-blue-200">
+      <p class="font-extrabold text-blue-800 mb-2">2. What is Grama Sabha? Write one function.</p>
+      <textarea class="w-full border-2 border-blue-200 rounded-lg p-2 min-h-[60px] text-sm" id="sa1" placeholder="Write your short answer here..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('sah1','saFb1')">Show hint</button>
+      <p id="sah1" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Meeting of adult voters; plans works / identifies beneficiaries / monitors...</p>
+      <p id="saFb1" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-blue-50 rounded-xl border-2 border-blue-200">
+      <p class="font-extrabold text-blue-800 mb-2">3. Write one idea of Gandhiji about village development.</p>
+      <textarea class="w-full border-2 border-blue-200 rounded-lg p-2 min-h-[60px] text-sm" id="sa2" placeholder="Write your short answer here..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('sah2','saFb2')">Show hint</button>
+      <p id="sah2" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Self-sufficiency in food and cloth; village as republic; soul of India in villages...</p>
+      <p id="saFb2" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-blue-50 rounded-xl border-2 border-blue-200">
+      <p class="font-extrabold text-blue-800 mb-2">4. What is decentralisation of power?</p>
+      <textarea class="w-full border-2 border-blue-200 rounded-lg p-2 min-h-[60px] text-sm" id="sa3" placeholder="Write your short answer here..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('sah3','saFb3')">Show hint</button>
+      <p id="sah3" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Transfer of power from higher levels to local bodies and people...</p>
+      <p id="saFb3" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-blue-50 rounded-xl border-2 border-blue-200">
+      <p class="font-extrabold text-blue-800 mb-2">5. Name two factors that helped Pookkottumala progress.</p>
+      <textarea class="w-full border-2 border-blue-200 rounded-lg p-2 min-h-[60px] text-sm" id="sa4" placeholder="Write your short answer here..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('sah4','saFb4')">Show hint</button>
+      <p id="sah4" class="hidden text-sm text-emerald-700 mt-1 font-semibold">People in grama sabhas, planning, officers' support, commitment...</p>
+      <p id="saFb4" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-blue-50 rounded-xl border-2 border-blue-200">
+      <p class="font-extrabold text-blue-800 mb-2">6. What is meant by sustainable development?</p>
+      <textarea class="w-full border-2 border-blue-200 rounded-lg p-2 min-h-[60px] text-sm" id="sa5" placeholder="Write your short answer here..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('sah5','saFb5')">Show hint</button>
+      <p id="sah5" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Meeting present needs without harming future generations...</p>
+      <p id="saFb5" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-blue-50 rounded-xl border-2 border-blue-200">
+      <p class="font-extrabold text-blue-800 mb-2">7. Write two features of Grama Swaraj as envisioned by Gandhi.</p>
+      <textarea class="w-full border-2 border-blue-200 rounded-lg p-2 min-h-[60px] text-sm" id="sa6" placeholder="Write your short answer here..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('sah6','saFb6')">Show hint</button>
+      <p id="sah6" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Grow own food and cotton; reserve for cattle, recreation, playground; interdependence...</p>
+      <p id="saFb6" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-blue-50 rounded-xl border-2 border-blue-200">
+      <p class="font-extrabold text-blue-800 mb-2">8. What can a class sabha discuss?</p>
+      <textarea class="w-full border-2 border-blue-200 rounded-lg p-2 min-h-[60px] text-sm" id="sa7" placeholder="Write your short answer here..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('sah7','saFb7')">Show hint</button>
+      <p id="sah7" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Child-friendly classroom, cleanliness of premises, greenery, waste management...</p>
+      <p id="saFb7" class="text-sm font-extrabold mt-1"></p>
+    </div>
+    <button class="btn-action w-full mt-2" onclick="checkAllShort(8)">Check all filled</button>
+  </div>
+</div>
+<div id="writeAnsScreen" class="screen">
+  <div class="header"><button class="back-btn" onclick="showScreen('homeScreen')">⬅</button><h1>Write Answers</h1></div>
+  <div class="content-card text-sm">
+    <p class="text-center font-extrabold text-amber-800 mb-3">Write detailed answers. Use the points for self-check.</p>
+    <div class="mb-4 p-3 bg-amber-50 rounded-xl border-2 border-amber-200">
+      <p class="font-extrabold text-amber-900 mb-2">1. Explain the Pookkottumala model of development. Mention any four activities implemented there.</p>
+      <textarea class="w-full border-2 border-amber-200 rounded-lg p-2 min-h-[100px] text-sm" id="wa0" placeholder="Write your answer in 4–6 sentences..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('wah0','waFb0')">Show points</button>
+      <p id="wah0" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Mention people's participation, local self-government support, and list activities.</p>
+      <p id="waFb0" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-amber-50 rounded-xl border-2 border-amber-200">
+      <p class="font-extrabold text-amber-900 mb-2">2. Describe the role of Grama Sabha in local development.</p>
+      <textarea class="w-full border-2 border-amber-200 rounded-lg p-2 min-h-[100px] text-sm" id="wa1" placeholder="Write your answer in 4–6 sentences..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('wah1','waFb1')">Show points</button>
+      <p id="wah1" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Define grama sabha and explain planning, beneficiaries, monitoring.</p>
+      <p id="waFb1" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-amber-50 rounded-xl border-2 border-amber-200">
+      <p class="font-extrabold text-amber-900 mb-2">3. Explain Gandhiji's vision of Grama Swaraj.</p>
+      <textarea class="w-full border-2 border-amber-200 rounded-lg p-2 min-h-[100px] text-sm" id="wa2" placeholder="Write your answer in 4–6 sentences..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('wah2','waFb2')">Show points</button>
+      <p id="wah2" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Quote village as complete republic; food, cloth, cattle, playground; decentralisation.</p>
+      <p id="waFb2" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-amber-50 rounded-xl border-2 border-amber-200">
+      <p class="font-extrabold text-amber-900 mb-2">4. How does decentralisation help realise grama swaraj? Write in your own words.</p>
+      <textarea class="w-full border-2 border-amber-200 rounded-lg p-2 min-h-[100px] text-sm" id="wa3" placeholder="Write your answer in 4–6 sentences..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('wah3','waFb3')">Show points</button>
+      <p id="wah3" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Power closer to people → welfare increases; grama swaraj materialises.</p>
+      <p id="waFb3" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-amber-50 rounded-xl border-2 border-amber-200">
+      <p class="font-extrabold text-amber-900 mb-2">5. What are the driving forces behind the developmental progress of Pookkottumala? Explain.</p>
+      <textarea class="w-full border-2 border-amber-200 rounded-lg p-2 min-h-[100px] text-sm" id="wa4" placeholder="Write your answer in 4–6 sentences..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('wah4','waFb4')">Show points</button>
+      <p id="wah4" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Active grama sabhas + officers + people's commitment.</p>
+      <p id="waFb4" class="text-sm font-extrabold mt-1"></p>
+    </div><div class="mb-4 p-3 bg-amber-50 rounded-xl border-2 border-amber-200">
+      <p class="font-extrabold text-amber-900 mb-2">6. Prepare a short note on the importance of people's participation in local self-government.</p>
+      <textarea class="w-full border-2 border-amber-200 rounded-lg p-2 min-h-[100px] text-sm" id="wa5" placeholder="Write your answer in 4–6 sentences..."></textarea>
+      <button class="btn-action mt-2 text-sm py-2 px-4" onclick="showHint('wah5','waFb5')">Show points</button>
+      <p id="wah5" class="hidden text-sm text-emerald-700 mt-1 font-semibold">Ownership of development, better planning, sustainable results.</p>
+      <p id="waFb5" class="text-sm font-extrabold mt-1"></p>
+    </div>
+    <button class="btn-action w-full mt-2" onclick="checkAllWrite(6)">Check all filled</button>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+</div>
+<script>
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+function showToast(m,d=2000,ok=true){const t=document.getElementById('toast');t.innerText=m;t.style.background=ok?'#10b981':'#ef4444';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),d);}
+function shuffle(a){return[...a].sort(()=>Math.random()-.5);}
+function mcq(qEl,oEl,bank,next){const it=bank[Math.floor(Math.random()*bank.length)];document.getElementById(qEl).innerHTML=it.q;const box=document.getElementById(oEl);box.innerHTML='';shuffle(it.o).forEach(o=>{const b=document.createElement('button');b.className='quiz-opt py-3';b.innerHTML=o;b.onclick=()=>{if(o===it.a){showToast('Correct!');setTimeout(next,700);}else showToast('Try again',1400,false);};box.appendChild(b);});}
+
+function initTerm(){mcq('tmQ','tmOpts',[
+  {q:'Meeting of all adult voters of a village/ward',a:'Grama Sabha',o:['Grama Sabha','Parliament only','Supreme Court','Police station']},
+  {q:'Village self-rule as dreamt by Gandhi',a:'Grama Swaraj',o:['Grama Swaraj','Only monarchy','Central rule only','No rule']},
+  {q:'Transfer of power to local bodies and people',a:'Decentralisation',o:['Decentralisation','Centralisation','Colonisation','Privatisation only']},
+  {q:'Development that meets present needs without harming future',a:'Sustainable development',o:['Sustainable development','Only short-term','Only industry','No plan']},
+  {q:'Model village of people development in the lesson',a:'Pookkottumala',o:['Pookkottumala','Only capital city','A factory town','A port only']}
+],initTerm);}
+function initWho(){mcq('whQ','whOpts',[
+  {q:'Who envisioned Grama Swaraj?',a:'Mahatma Gandhi',o:['Mahatma Gandhi','Only British officers','Only kings','Only traders']},
+  {q:'Which body plans local development with people?',a:'Grama Sabha / Panchayat',o:['Grama Sabha / Panchayat','Only UN','Only army','Only banks']},
+  {q:'Janakeeya Samithi is',a:"People committee",o:["People committee",'Only foreign body','Only private company','Only school club']},
+  {q:'Local self-government in rural area includes',a:'Grama panchayat',o:['Grama panchayat','Only central ministry','Only embassy','Only stock market']}
+],initWho);}
+let tfOk=true;
+function initTrue(){const items=[
+  {q:'Pookkottumala used people participation for development',t:true},
+  {q:'Grama Sabha is only for officers',t:false},
+  {q:'Gandhi believed soul of India is in villages',t:true},
+  {q:'Decentralisation means all power stays at the centre',t:false},
+  {q:'Jalasamridhi relates to water prosperity',t:true},
+  {q:'Filament-free village is about energy-efficient lighting',t:true},
+  {q:'Grama Swaraj needs only cities to grow',t:false},
+  {q:'Local self-government supports local development',t:true},
+  {q:'Pookkottumala had greenery and watershed projects',t:true},
+  {q:'Sustainable development ignores the future',t:false}
+];const it=items[Math.floor(Math.random()*items.length)];tfOk=it.t;document.getElementById('tfQ').innerHTML=it.q;}
+function checkTF(ans){if(ans===tfOk){showToast('Correct!');setTimeout(initTrue,800);}else showToast('Not correct',1400,false);}
+function initLevel(){mcq('lvQ','lvOpts',[
+  {q:'Lowest rural local body',a:'Grama panchayat',o:['Grama panchayat','Only Parliament','Only Supreme Court','Only RBI']},
+  {q:'Urban local body example',a:'Municipality / Corporation',o:['Municipality / Corporation','Only grama sabha','Only village court','Only army camp']},
+  {q:'Three-tier rural local bodies include',a:'Grama, Block, District panchayat',o:['Grama, Block, District panchayat','Only one office','Only central departments','Only embassies']},
+  {q:'Ward sabha is related to',a:'Part of grama sabha system',o:['Part of grama sabha system','Only national election','Only international meet','Only sports meet']}
+],initLevel);}
+function initAct(){mcq('acQ','acOpts',[
+  {q:'Food self-sufficiency in Pookkottumala is an example of',a:'Local development activity',o:['Local development activity','Only foreign trade','Only space program','Only banking']},
+  {q:'Watershed development helps',a:'Water conservation / soil',o:['Water conservation / soil','Only air travel','Only fashion','Only cinema']},
+  {q:'Garbage-free / filament-free are',a:'Clean energy / waste goals',o:['Clean energy / waste goals','Only noise goals','Only traffic only','Only sports']},
+  {q:'Solar parks in wards show',a:'Renewable energy at local level',o:['Renewable energy at local level','Only coal plants','Only imports','Only ads']}
+],initAct);}
+function initQuote(){mcq('qtQ','qtOpts',[
+  {q:"Gandhi: village's first concern will be to grow its own",a:'Food crops and cotton for cloth',o:['Food crops and cotton for cloth','Only cars','Only software','Only weapons']},
+  {q:'Village as complete republic yet',a:'Interdependent where necessary',o:['Interdependent where necessary','Fully isolated always','Only dependent on cities','Without any need']},
+  {q:'Soul of India lies in the',a:'Villages',o:['Villages','Only metros','Only ports','Only airports']},
+  {q:'Progress of the country through',a:'Development of villages',o:['Development of villages','Only ignoring villages','Only foreign aid','Only factories abroad']}
+],initQuote);}
+function initBody(){mcq('bdQ','bdOpts',[
+  {q:'Grama Sabha is',a:'Institution of direct democracy at village',o:['Institution of direct democracy at village','Only a private club','Only a company','Only a sports team']},
+  {q:'Panchayat is',a:'Local self-government institution',o:['Local self-government institution','Only central cabinet','Only high court','Only university']},
+  {q:'Janakeeya Samithi means',a:"People committee",o:["People committee",'Only foreign NGO name','Only bank name','Only brand']},
+  {q:'Local self-government works with',a:'People and officers together',o:['People and officers together','Only without people','Only without plan','Only without law']}
+],initBody);}
+function initGoal(){mcq('glQ','glOpts',[
+  {q:'Aim of grama swaraj',a:'Self-governing, self-sufficient villages',o:['Self-governing, self-sufficient villages','Only rule from far capital','Only no agriculture','Only no people']},
+  {q:'Sustainable development goal example',a:'Greenery, water, food security for long term',o:['Greenery, water, food security for long term','Only short profit','Only pollution increase','Only one year plan']},
+  {q:'Decentralisation goal',a:'Power and welfare closer to people',o:['Power and welfare closer to people','Power only at one place','No local say','No development']}
+],initGoal);}
+
+function initFactor(){mcq('fcQ','fcOpts',[
+  {q:'Driving force of Pookkottumala progress',a:'People in grama sabhas + officers + commitment',o:['People in grama sabhas + officers + commitment','Only one person','Only outsiders','Only luck']},
+  {q:'Without people participation, development is',a:'Harder / less sustainable',o:['Harder / less sustainable','Always better','Not related','Only faster']},
+  {q:'Local self-government support means',a:'Panchayat help for projects',o:['Panchayat help for projects','Only foreign army','Only no rules','Only ads']}
+],initFactor);}
+function initSabha(){mcq('sbQ','sbOpts',[
+  {q:'Grama Sabha can',a:'Plan works, identify beneficiaries, monitor',o:['Plan works, identify beneficiaries, monitor','Only pass national law','Only print currency','Only run airlines']},
+  {q:'Class sabha idea is to',a:'Discuss school development like cleanliness, child-friendly room',o:['Discuss school development like cleanliness, child-friendly room','Only ignore school','Only play games always','Only close school']},
+  {q:'Notice for sabha should include',a:'Date, place, agenda / activities to discuss',o:['Date, place, agenda / activities to discuss','Only blank paper','Only one word','Only signature without agenda']}
+],initSabha);}
+function initProject(){mcq('pjQ','pjOpts',[
+  {q:'Jalasamridhi Project is about',a:'Water abundance / water security',o:['Water abundance / water security','Only roads abroad','Only fashion','Only cinema']},
+  {q:'Pachathuruth Project is an example of',a:'Local development project in a ward',o:['Local development project in a ward','Only space mission','Only foreign war','Only bank rate']},
+  {q:'Arid-free village means',a:'No longer dry / water and greenery restored',o:['No longer dry / water and greenery restored','Always desert','No plants allowed','No people']}
+],initProject);}
+function initGandhi(){mcq('gdQ','gdOpts',[
+  {q:'Village first concern (Gandhi)',a:'Grow own food and cotton for cloth',o:['Grow own food and cotton for cloth','Only import all food','Only no farming','Only factories only']},
+  {q:'Village should have',a:'Reserve for cattle, recreation, playground',o:['Reserve for cattle, recreation, playground','Only concrete no open space','Only no animals','Only no children']},
+  {q:'Extra land can grow',a:'Useful money crops',o:['Useful money crops','Only waste','Only nothing','Only buildings always']},
+  {q:'Grama Swaraj is realised when',a:'Power is decentralised to people',o:['Power is decentralised to people','All power stays far away','No local body','No participation']}
+],initGandhi);}
+function initPower(){mcq('pwQ','pwOpts',[
+  {q:'Decentralisation helps',a:'Grama swaraj and local welfare',o:['Grama swaraj and local welfare','Only centralisation','Only no panchayat','Only no people']},
+  {q:'When power reaches people',a:'Welfare increases',o:['Welfare increases','Welfare always falls','No change ever','Only cities benefit']},
+  {q:'Villages are basic units of',a:'Democratic governance',o:['Democratic governance','Only monarchy','Only military rule','Only company rule']}
+],initPower);}
+function initClass(){mcq('clQ','clOpts',[
+  {q:'Class sabha can discuss',a:'Child-friendly classroom, cleanliness',o:['Child-friendly classroom, cleanliness','Only national budget','Only foreign policy','Only court cases']},
+  {q:'Organising class sabha teaches',a:'Democratic participation at small scale',o:['Democratic participation at small scale','Only silence','Only no discussion','Only one person decides']},
+  {q:'Notice for class sabha needs',a:'Agenda of developmental activities',o:['Agenda of developmental activities','No agenda','Only blank','Only random list']}
+],initClass);}
+function initLink(){mcq('lkQ','lkOpts',[
+  {q:'Pookkottumala + Grama Sabha',a:'People plan and own development',o:['People plan and own development','No link','Only conflict','Only outside rule']},
+  {q:'Gandhi + Decentralisation',a:'Path to grama swaraj',o:['Path to grama swaraj','Opposite ideas','No connection','Only cities']},
+  {q:'Sustainable development + local power',a:'Local care for long-term resources',o:['Local care for long-term resources','Only short waste','No link','Only pollution']}
+],initLink);}
+function initChallenge(){mcq('chQ','chOpts',[
+  {q:'If grama sabha is weak, development may be',a:'Less participatory / less owned by people',o:['Less participatory / less owned by people','Always better','Not affected','Only faster']},
+  {q:'Self-sufficiency in food means',a:'Village grows much of its own food',o:['Village grows much of its own food','Only imports all food','No farming','Only cash crops always']},
+  {q:'Why filament-free?',a:'Save energy / better lighting practice',o:['Save energy / better lighting practice','No light at all','Only for show','Only against solar']},
+  {q:'Best description of the lesson theme',a:'Power with people for local sustainable development',o:['Power with people for local sustainable development','Power only at centre','No local role','Only foreign models']}
+],initChallenge);}
+
+const pairs=[{id:1,val:'Grama Sabha'},{id:1,val:'Voters meet'},{id:2,val:'Grama Swaraj'},{id:2,val:'Village self-rule'},{id:3,val:'Decentralisation'},{id:3,val:'Power to local'},{id:4,val:'Pookkottumala'},{id:4,val:'Model village'},{id:5,val:'Sustainable'},{id:5,val:'Long-term care'},{id:6,val:'Janakeeya'},{id:6,val:"People committee"}];
+let flipped=[],matched=0,moves=0;
+function initMem(){const g=document.getElementById('memoryGrid');g.innerHTML='';flipped=[];matched=0;moves=0;document.getElementById('memoryMoves').innerText='Moves: 0';shuffle(pairs).forEach(it=>{const c=document.createElement('div');c.className='memory-card font-extrabold';c.dataset.id=it.id;c.innerHTML='<div>'+it.val+'</div>';c.onclick=()=>flip(c);g.appendChild(c);});}
+function flip(card){if(flipped.length<2 && !card.classList.contains('revealed') && !card.classList.contains('matched')){card.classList.add('revealed');flipped.push(card);if(flipped.length===2){moves++;document.getElementById('memoryMoves').innerText='Moves: '+moves;setTimeout(()=>{const[a,b]=flipped;if(a.dataset.id===b.dataset.id){a.classList.replace('revealed','matched');b.classList.replace('revealed','matched');matched+=2;if(matched===pairs.length)showToast('Great! 🏆');}else{a.classList.remove('revealed');b.classList.remove('revealed');}flipped=[];},550);}}}
+let racePts=0;
+function initRace(){racePts=0;document.getElementById('racePts').innerText=0;document.getElementById('raceCar').style.left='0%';nextRace();}
+function nextRace(){const bank=[
+  {q:'Grama Sabha is?',a:'Voters meeting',o:['Voters meeting','Only court','Only army']},
+  {q:'Grama Swaraj by?',a:'Gandhi',o:['Gandhi','Only British','Only kings']},
+  {q:'Decentralisation?',a:'Power to local',o:['Power to local','Only centre','No power']},
+  {q:'Model village?',a:'Pookkottumala',o:['Pookkottumala','Only capital','Only port']},
+  {q:'Soul of India?',a:'Villages',o:['Villages','Only cities','Only factories']},
+  {q:'Jalasamridhi?',a:'Water project',o:['Water project','Only road','Only school']}
+];const it=bank[Math.floor(Math.random()*bank.length)];document.getElementById('raceQ').innerHTML=it.q;const box=document.getElementById('raceOpts');box.innerHTML='';shuffle(it.o).forEach(o=>{const b=document.createElement('button');b.className='quiz-opt py-3';b.innerHTML=o;b.onclick=()=>{if(o===it.a){racePts=Math.min(100,racePts+20);showToast('+20');}else showToast('Wrong',1000,false);document.getElementById('racePts').innerText=racePts;document.getElementById('raceCar').style.left=racePts+'%';if(racePts>=100)showToast('Finish! 🏁');else nextRace();};box.appendChild(b);});}
+let qk=0;
+function initQuick(){const bank=[
+  {q:'Local body rural?',a:'Grama panchayat',o:['Grama panchayat','Only Parliament','Only RBI']},
+  {q:'Sustainable means?',a:'Present + future care',o:['Present + future care','Only present','Only past']},
+  {q:'Class sabha discusses?',a:'School development',o:['School development','Only national law','Only currency']},
+  {q:'Filament-free?',a:'Energy efficient',o:['Energy efficient','No light','Only dark']},
+  {q:'People committee?',a:'Janakeeya Samithi',o:['Janakeeya Samithi','Only foreign body','Only bank']},
+  {q:'Power to people helps?',a:'Welfare',o:['Welfare','Only harm','No effect']}
+];const it=bank[Math.floor(Math.random()*bank.length)];document.getElementById('qkQ').innerHTML=it.q;const box=document.getElementById('qkOpts');box.innerHTML='';shuffle(it.o).forEach(o=>{const b=document.createElement('button');b.className='quiz-opt py-3';b.innerHTML=o;b.onclick=()=>{if(o===it.a){qk++;showToast('Yes!');}else showToast('No',900,false);document.getElementById('qkScore').innerText='Score: '+qk;initQuick();};box.appendChild(b);});}
+let ldLevel=1;
+const ladderItems=[{q:'Voters meeting',a:'Grama Sabha'},{q:'Village self-rule',a:'Grama Swaraj'},{q:'Power to local',a:'Decentralisation'},{q:'Model in lesson',a:'Pookkottumala'},{q:'Soul of India',a:'Villages'},{q:'Long-term development',a:'Sustainable'}];
+function initLadder(){ldLevel=1;nextLadder();}
+function nextLadder(){if(ldLevel>ladderItems.length){showToast('Ladder done! 🏆');ldLevel=1;}
+  const it=ladderItems[ldLevel-1];
+  document.getElementById('ldQ').innerHTML=it.q+' = ?';
+  document.getElementById('ldScore').innerText='Level: '+ldLevel;
+  const wrong=['Parliament','Centralisation','City only'].filter(w=>w!==it.a);
+  const opts=shuffle([it.a,...wrong.slice(0,2)]);
+  const box=document.getElementById('ldOpts');box.innerHTML='';
+  opts.forEach(o=>{const b=document.createElement('button');b.className='quiz-opt py-3';b.innerText=o;b.onclick=()=>{if(o===it.a){showToast('Up!');ldLevel++;setTimeout(nextLadder,600);}else showToast('Again',1000,false);};box.appendChild(b);});
+}
+function initTarget(){mcq('tgQ','tgOpts',[
+  {q:'Which is Grama Sabha?',a:'Meeting of adult voters',o:['Meeting of adult voters','Only court','Only army','Only bank']},
+  {q:'Which is Gandhi idea?',a:'Grama Swaraj',o:['Grama Swaraj','Only city rule','Only no village','Only monarchy']},
+  {q:'Which is Pookkottumala?',a:'People development model',o:['People development model','Only factory','Only capital','Only port']},
+  {q:'Which is decentralisation?',a:'Power to local/people',o:['Power to local/people','Only centre','No government','Only foreign']}
+],initTarget);}
+function initOrder(){mcq('orQ','orOpts',[
+  {q:'Closest to people',a:'Grama Sabha / Panchayat',o:['Grama Sabha / Panchayat','Only central ministry','Only international body']},
+  {q:'Gandhi priority',a:'Village development first',o:['Village development first','Only cities first','Only abroad first']},
+  {q:'Best for local plan',a:'Grama Sabha participation',o:['Grama Sabha participation','Only top-down order','No meeting']}
+],initOrder);}
+function initMix(){mcq('mxQ','mxOpts',[
+  {q:'Grama Sabha',a:'Village voters meet',o:['Village voters meet','Only Parliament','Only court','Only police']},
+  {q:'Grama Swaraj',a:"Gandhi village republic",o:["Gandhi village republic",'Only British rule','Only no rule','Only city']},
+  {q:'Decentralisation',a:'Power shared to local',o:['Power shared to local','All at centre','No power','Only army']},
+  {q:'Pookkottumala',a:'Sustainable people model',o:['Sustainable people model','Only arid forever','Only no panchayat','Only no people']},
+  {q:'Sustainable',a:'Present without harming future',o:['Present without harming future','Only present','Only future ignore','No plan']},
+  {q:'Local self-government',a:'Panchayat / Municipality',o:['Panchayat / Municipality','Only central cabinet','Only foreign embassy','Only company']}
+],initMix);}
+function initBuild(){mcq('bd2Q','bd2Opts',[
+  {q:'People + planning + officers',a:'Driving force of local progress',o:['Driving force of local progress','Only conflict','Only delay','Only failure']},
+  {q:'Village grows food and cloth',a:'Gandhi self-sufficiency idea',o:['Gandhi self-sufficiency idea','Only import all','Only no farm','Only city only']},
+  {q:'Power to panchayat and people',a:'Decentralisation for grama swaraj',o:['Decentralisation for grama swaraj','Only centralisation','Only no local body','Only no vote']},
+  {q:'Class sabha agenda can include',a:'Clean campus, child-friendly class',o:['Clean campus, child-friendly class','Only national budget','Only foreign policy','Only currency print']}
+],initBuild);}
+
+const quizData=[
+  {q:'Pookkottumala is known for?',o:['People participation in development','Only factories','No panchayat','Only arid land'],a:0},
+  {q:'Grama Sabha is?',o:['Meeting of adult voters','Only officers','Only MLAs','Only police'],a:0},
+  {q:'Grama Swaraj envisioned by?',o:['Gandhiji','Only British','Only kings','Only traders'],a:0},
+  {q:'Decentralisation means?',o:['Power to local bodies/people','All power at centre','No government','Only foreign rule'],a:0},
+  {q:'Jalasamridhi related to?',o:['Water','Only roads','Only electricity','Only fashion'],a:0},
+  {q:'Filament-free village means?',o:['Energy efficient lighting','No light','No houses','Only dark'],a:0},
+  {q:'Soul of India (Gandhi)?',o:['Villages','Only cities','Only factories','Only ports'],a:0},
+  {q:'Local self-government helps?',o:['Local development with people','Only foreign policy','Only currency','Only army'],a:0},
+  {q:'Driving force of Pookkottumala?',o:['People + officers + commitment','Only one person','Only outsiders','Only luck'],a:0},
+  {q:'Village first concern (Gandhi)?',o:['Food and cotton for cloth','Only cars','Only software','Only weapons'],a:0},
+  {q:'Janakeeya Samithi is?',o:["People committee",'Only foreign body','Only bank','Only brand'],a:0},
+  {q:'Sustainable development?',o:['Present needs without harming future','Only short-term','Only pollution','No plan'],a:0},
+  {q:'Class sabha can discuss?',o:['Cleanliness, child-friendly class','Only national law','Only court','Only currency'],a:0},
+  {q:'Rural local body?',o:['Grama panchayat','Only Parliament','Only RBI','Only embassy'],a:0},
+  {q:'When power reaches people?',o:['Welfare increases','Welfare falls','No change','Only cities'],a:0},
+  {q:'Arid-free means?',o:['No longer dry / greenery restored','Always desert','No plants','No people'],a:0},
+  {q:'Three-tier rural includes?',o:['Grama, Block, District panchayat','Only one office','Only centre','Only embassies'],a:0},
+  {q:'Best theme of the lesson?',o:['Power with people for local development','Power only at centre','No local role','Only foreign models'],a:0},
+  {q:'Watershed development helps?',o:['Water and soil','Only air travel','Only fashion','Only cinema'],a:0},
+  {q:'Gandhi: village is a?',o:['Complete republic (with interdependence)', 'Only isolated forever','Only city suburb','Only factory zone'],a:0}
+];
+let qi=0,qs=0,curCorrect=0;
+function initQuiz(){qi=0;qs=0;document.getElementById('quizResultArea').style.display='none';document.getElementById('quizQuestionArea').style.display='block';loadQ();}
+function loadQ(){document.getElementById('quizProgress').innerText=(qi+1)+'/20';const q=quizData[qi];document.getElementById('questionText').innerHTML=(qi+1)+'. '+q.q;const og=document.getElementById('optionsGrid');og.innerHTML='';
+  const opts=q.o.map((t,i)=>({t:t,ok:i===q.a}));
+  const shuffled=shuffle(opts);
+  curCorrect=shuffled.findIndex(x=>x.ok);
+  shuffled.forEach((o,i)=>{const b=document.createElement('button');b.className='quiz-opt py-3';b.innerHTML=o.t;b.onclick=()=>chkQ(i,b);og.appendChild(b);});
+}
+function chkQ(i,btn){document.querySelectorAll('#optionsGrid .quiz-opt').forEach(b=>b.disabled=true);if(i===curCorrect){btn.classList.add('bg-green-100','border-green-500');qs++;showToast('Correct!',700);}else{btn.classList.add('bg-red-100','border-red-500');document.querySelectorAll('#optionsGrid .quiz-opt')[curCorrect].classList.add('bg-green-100','border-green-500');showToast('Wrong',700,false);}setTimeout(()=>{qi++;if(qi<quizData.length)loadQ();else{document.getElementById('quizQuestionArea').style.display='none';document.getElementById('quizResultArea').style.display='block';document.getElementById('finalScore').innerText=qs;}},1000);}
+let mL=null,mR=null;
+function selM(side,el){if(el.classList.contains('matched'))return;document.querySelectorAll('#match-'+side+' .match-item:not(.matched)').forEach(i=>i.classList.remove('selected'));el.classList.add('selected');if(side==='left')mL=el;else mR=el;if(mL&&mR){if(mL.dataset.id===mR.dataset.id){mL.className=mR.className='match-item matched';showToast('Match!',800);}else{showToast('Wrong',800,false);mL.classList.remove('selected');mR.classList.remove('selected');}mL=mR=null;}}
+function resetM(){document.querySelectorAll('#matchScreen .match-item').forEach(e=>e.className='match-item');mL=mR=null;}
+
+/* Extra activities inspired by Std 5 SS style */
+const vocabData=[
+  {w:'Grama Sabha',m:'Meeting of all adult voters of a village/ward'},
+  {w:'Grama Swaraj',m:"Gandhi's idea of village self-rule"},
+  {w:'Decentralisation',m:'Transfer of power to local bodies and people'},
+  {w:'Pookkottumala',m:'Model village of people participation'},
+  {w:'Janakeeya Samithi',m:"People's committee"},
+  {w:'Jalasamridhi',m:'Water prosperity project'},
+  {w:'Sustainable development',m:'Meet present needs without harming future'},
+  {w:'Filament-free',m:'Energy-efficient lighting village'},
+  {w:'Local self-government',m:'Panchayat / Municipality bodies'},
+  {w:'Watershed',m:'Water and soil conservation area'}
+];
+function showVocab(){
+  const g=document.getElementById('vocabGrid');g.innerHTML='';
+  vocabData.forEach(v=>{
+    const d=document.createElement('div');
+    d.className='quiz-opt py-4 cursor-pointer';
+    d.innerHTML='<b>'+v.w+'</b>';
+    let flipped=false;
+    d.onclick=()=>{flipped=!flipped;d.innerHTML=flipped?'<span class="text-sm">'+v.m+'</span>':'<b>'+v.w+'</b>';};
+    g.appendChild(d);
+  });
+}
+document.getElementById('vocabScreen')&&document.querySelector('[onclick*="vocabScreen"]')&&null;
+
+/* Read the Lesson — English TTS paragraph style ( Malayalam reading) */
+const lessonParas=[
+  "You might have noticed the headlines about Pookkottumala village. Pookkottumala is a village that accomplished sustainable development with the participation of the people.",
+  "Several developmental activities like self-sufficiency in food, development of watersheds, greenery in all wards, arid-free village, Jalasamridhi Project and filament-free village have been implemented in various wards of Pookkottumala with the assistance and support rendered by the local self-government institutions.",
+  "The active participation of the people in grama sabhas, the planning and timely intervention of officers, and the commitment of the people have contributed to the development of Pookkottumala Panchayat in this way.",
+  "What are the factors that have become the driving force behind the developmental progress of Pookkottumala village? People participation in grama sabhas, planning, and officers support.",
+  "Gandhiji believed that the soul of India lies in the villages and that the country can make progress only through the development of the villages.",
+  "My idea of village Swaraj is that it is a complete republic, independent of its neighbours for its own vital wants and yet interdependent for many others in which dependence is a necessity.",
+  "Thus every village first concern will be to grow its own food crops and cotton for its cloth. It should have a reserve for cattle, recreation and playground for adults and children.",
+  "Villages are the basic units of democratic governance. Therefore, the welfare of people increases with the increase of the power of the panchayat.",
+  "Gandhiji considered grama swaraj as a self-governing body. Decentralisation of power is the means to realise the concept of grama swaraj, as envisioned by Gandhiji.",
+  "The concept of grama swaraj gets materialised when power is decentralised to the people."
+];
+let readAllOn=false, readIdx=0, currentUtter=null;
+
+function renderLessonParas(){
+  const box=document.getElementById('lessonParas');
+  if(!box)return;
+  box.innerHTML='';
+  lessonParas.forEach((p,i)=>{
+    const div=document.createElement('div');
+    div.className='p-3 rounded-xl bg-blue-50 border-l-4 border-blue-500 flex gap-2 items-start';
+    div.id='para'+i;
+    div.innerHTML='<p class="flex-1 text-base leading-relaxed">'+p+'</p><button class="mini-play bg-blue-600 text-white w-10 h-10 rounded-full flex-shrink-0" onclick="readPara('+i+')">▶</button>';
+    box.appendChild(div);
+  });
+}
+function highlightPara(i){
+  document.querySelectorAll('#lessonParas > div').forEach(d=>d.classList.remove('bg-yellow-100','ring-2','ring-blue-500'));
+  const el=document.getElementById('para'+i);
+  if(el){el.classList.add('bg-yellow-100','ring-2','ring-blue-500');el.scrollIntoView({behavior:'smooth',block:'center'});}
+}
+function readPara(i){
+  if(!('speechSynthesis' in window)){showToast('Speech not supported',1500,false);return;}
+  window.speechSynthesis.cancel();
+  highlightPara(i);
+  const u=new SpeechSynthesisUtterance(lessonParas[i]);
+  u.lang='en-IN';u.rate=0.9;
+  currentUtter=u;
+  u.onend=()=>{if(readAllOn && i+1<lessonParas.length){readIdx=i+1;readPara(readIdx);}else{readAllOn=false;document.getElementById('readAllBtn').innerText='🔊 Read All';}};
+  window.speechSynthesis.speak(u);
+}
+function toggleReadAll(){
+  if(readAllOn){stopReadAll();return;}
+  readAllOn=true;
+  document.getElementById('readAllBtn').innerText='⏸ Pause';
+  readIdx=0;readPara(0);
+}
+function stopReadAll(){
+  readAllOn=false;
+  if(window.speechSynthesis)window.speechSynthesis.cancel();
+  const b=document.getElementById('readAllBtn');if(b)b.innerText='🔊 Read All';
+  document.querySelectorAll('#lessonParas > div').forEach(d=>d.classList.remove('bg-yellow-100','ring-2','ring-blue-500'));
+}
+
+const _show0=showScreen;
+showScreen=function(id){
+  if(typeof stopReadAll==='function' && id!=='readLessonScreen')try{stopReadAll();}catch(e){}
+  _show0(id);
+  if(id==='readLessonScreen')renderLessonParas();
+  if(id==='vocabScreen' && typeof showVocab==='function')showVocab();
+};
+
+
+function saveNotice(){
+  const t=document.getElementById('noticeText').value.trim();
+  const fb=document.getElementById('noticeFeedback');
+  if(t.length<40){fb.style.color='#ef4444';fb.innerText='Add more details: date, place, agenda.';return;}
+  const need=['date','time','place','agenda','clean','class'].some(k=>t.toLowerCase().includes(k));
+  fb.style.color='#10b981';fb.innerText=need?'Good notice! Include agenda items for class sabha.':'Saved. Try adding date/place/agenda keywords.';
+  showToast('Notice saved');
+}
+function checkSabhaPlan(){
+  const n=document.querySelectorAll('.sabha-item:checked').length;
+  const fb=document.getElementById('sabhaPlanFb');
+  if(n>=3){fb.style.color='#10b981';fb.innerText='Strong plan with '+n+' items. Ready for Class Sabha!';showToast('Plan ready');}
+  else{fb.style.color='#ef4444';fb.innerText='Select at least 3 activities.';}
+}
+
+const pairItems=[
+  {id:1,a:'Jalasamridhi',b:'Water project'},
+  {id:2,a:'Filament-free',b:'Energy efficient light'},
+  {id:3,a:'Watershed',b:'Water & soil care'},
+  {id:4,a:'Arid-free',b:'No longer dry village'},
+  {id:5,a:'Grama Sabha',b:'Voters meeting'},
+  {id:6,a:'Grama Swaraj',b:'Village self-rule'}
+];
+let pairMatched=0,pairSel=null;
+function initPairGame(){
+  pairMatched=0;pairSel=null;
+  document.getElementById('pairScore').innerText='Matched: 0';
+  const g=document.getElementById('pairGrid');g.innerHTML='';
+  const left=shuffle(pairItems.map(p=>({id:p.id,t:p.a,side:'L'})));
+  const right=shuffle(pairItems.map(p=>({id:p.id,t:p.b,side:'R'})));
+  const all=[...left,...right];
+  // show as two columns conceptually via grid
+  left.forEach(it=>{
+    const b=document.createElement('button');b.className='quiz-opt py-3';b.innerText=it.t;b.dataset.id=it.id;b.dataset.side='L';
+    b.onclick=()=>pairClick(b);g.appendChild(b);
+  });
+  right.forEach(it=>{
+    const b=document.createElement('button');b.className='quiz-opt py-3';b.innerText=it.t;b.dataset.id=it.id;b.dataset.side='R';
+    b.onclick=()=>pairClick(b);g.appendChild(b);
+  });
+}
+function pairClick(btn){
+  if(btn.classList.contains('matched'))return;
+  if(!pairSel){pairSel=btn;btn.classList.add('bg-blue-100');return;}
+  if(pairSel===btn){pairSel.classList.remove('bg-blue-100');pairSel=null;return;}
+  if(pairSel.dataset.side===btn.dataset.side){pairSel.classList.remove('bg-blue-100');pairSel=btn;btn.classList.add('bg-blue-100');return;}
+  if(pairSel.dataset.id===btn.dataset.id){
+    pairSel.className=btn.className='quiz-opt py-3 matched bg-green-100 border-green-500';
+    pairMatched++;document.getElementById('pairScore').innerText='Matched: '+pairMatched;
+    showToast('Match!');pairSel=null;
+    if(pairMatched>=pairItems.length)showToast('All matched! 🏆');
+  }else{
+    showToast('Wrong pair',1000,false);
+    pairSel.classList.remove('bg-blue-100');pairSel=null;
+  }
+}
+
+const clues=[
+  {q:'I am a meeting of all adult voters in a village. Who am I?',a:'Grama Sabha',o:['Grama Sabha','Parliament','High Court','Army']},
+  {q:'Gandhi called me village self-rule. Who am I?',a:'Grama Swaraj',o:['Grama Swaraj','Centralisation','Monarchy','Colony']},
+  {q:'I transfer power from top to local people. What am I?',a:'Decentralisation',o:['Decentralisation','Centralisation','Colonisation','Privatisation']},
+  {q:'I am the model village in this lesson. Who am I?',a:'Pookkottumala',o:['Pookkottumala','Only a capital','A port city','A desert']},
+  {q:'I am a water prosperity project. What am I?',a:'Jalasamridhi',o:['Jalasamridhi','Only a road','Only a school','Only a bank']},
+  {q:'I mean energy-efficient lighting village. What am I?',a:'Filament-free',o:['Filament-free','No light','Only dark','Only coal']}
+];
+function initClue(){mcq('clueQ','clueOpts',clues,initClue);}
+
+const sortItems=[
+  {q:'Building a village road through panchayat',local:true},
+  {q:'Watershed development in a ward',local:true},
+  {q:'National foreign policy decision',local:false},
+  {q:'Organising grama sabha for beneficiaries',local:true},
+  {q:'Printing currency notes',local:false},
+  {q:'School cleanliness drive by class sabha',local:true},
+  {q:'Declaring war',local:false},
+  {q:'Solar park in each ward',local:true},
+  {q:'Supreme Court judgement on constitution',local:false},
+  {q:'Garbage-free ward campaign',local:true}
+];
+let sortOk=true;
+function initSort(){const it=sortItems[Math.floor(Math.random()*sortItems.length)];sortOk=it.local;document.getElementById('sortQ').innerHTML=it.q;}
+function checkSort(ans){if(ans===sortOk){showToast('Correct!');setTimeout(initSort,700);}else showToast('Not correct',1200,false);}
+
+const fillBank=[
+  {q:'_____ is the meeting of adult voters of a village.',a:'Grama Sabha',o:['Grama Sabha','Parliament','Senate','Cabinet']},
+  {q:'Gandhi vision of village self-rule is called _____.',a:'Grama Swaraj',o:['Grama Swaraj','Dictatorship','Empire','Colony']},
+  {q:'Transfer of power to local bodies is _____.',a:'Decentralisation',o:['Decentralisation','Centralisation','Colonisation','Migration']},
+  {q:'The model village in the lesson is _____.',a:'Pookkottumala',o:['Pookkottumala','Delhi only','Mumbai only','A desert']},
+  {q:'Soul of India, according to Gandhi, lies in the _____.',a:'villages',o:['villages','only cities','only ports','only factories']},
+  {q:'_____ development meets present needs without harming the future.',a:'Sustainable',o:['Sustainable','Only short-term','Only wasteful','Only temporary']}
+];
+function initFill(){mcq('fillQ','fillOpts',fillBank,initFill);}
+
+
+function showHint(hid,fid){
+  const h=document.getElementById(hid);const f=document.getElementById(fid);
+  if(h){h.classList.toggle('hidden');}
+  if(f){f.innerText=h&&!h.classList.contains('hidden')?'Compare with your answer':'';}
+}
+function checkAllShort(n){
+  let filled=0;
+  for(let i=0;i<n;i++){const t=document.getElementById('sa'+i);if(t&&t.value.trim().length>10)filled++;}
+  showToast(filled+' / '+n+' answers written');
+}
+function checkAllWrite(n){
+  let filled=0;
+  for(let i=0;i<n;i++){const t=document.getElementById('wa'+i);if(t&&t.value.trim().length>20)filled++;}
+  showToast(filled+' / '+n+' answers written');
+}
+
+function downloadPDF(){html2pdf().set({margin:12,filename:'Std7_SS_Unit8_Power_to_the_People_Test.pdf',html2canvas:{scale:2},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}}).from(document.getElementById('printableQP')).save();}
+</script>
+</body>
+</html>
